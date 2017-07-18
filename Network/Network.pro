@@ -1,9 +1,11 @@
-QT       += core gui
+QT       += network
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       -= gui
 
-TARGET = S
-TEMPLATE = app
+TARGET = Network
+TEMPLATE = lib
+
+DEFINES += NETWORK_LIBRARY
 
 DESTDIR = $$PWD/../bin
 
@@ -19,11 +21,8 @@ CONFIG(release, debug|release){
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
-        main.cpp \
-        smainwindow.cpp
+        network.cpp
 
 HEADERS += \
-        smainwindow.h
-
-FORMS += \
-        smainwindow.ui
+        network.h \
+        network_global.h 

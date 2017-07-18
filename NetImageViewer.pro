@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     C \
-    S
+    S \
+    Network
