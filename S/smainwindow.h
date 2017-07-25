@@ -1,9 +1,11 @@
 #ifndef SMAINWINDOW_H
 #define SMAINWINDOW_H
 
+#include <QMap>
 #include <QMainWindow>
 
-class Server;
+class QTcpServer;
+class QTcpSocket;
 
 namespace Ui {
 class SMainWindow;
@@ -17,9 +19,13 @@ public:
     explicit SMainWindow(QWidget *parent = 0);
     ~SMainWindow();
 
+private slots:
+    void onNewConnection();
+
 private:
     Ui::SMainWindow *ui;
-    Server *m_pServer;
+    QTcpServer *m_pServer;
+    QMap<QString, QTcpSocket *> m_lstClient;
 };
 
 #endif // SMAINWINDOW_H

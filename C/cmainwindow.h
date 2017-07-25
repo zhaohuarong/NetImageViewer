@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-class Client;
+class QTcpSocket;
 
 namespace Ui {
 class CMainWindow;
@@ -17,9 +17,16 @@ public:
     explicit CMainWindow(QWidget *parent = 0);
     ~CMainWindow();
 
+protected:
+    void timerEvent(QTimerEvent *e);
+
+private slots:
+    void onDisconnected();
+
 private:
     Ui::CMainWindow *ui;
-    Client *m_pClient;
+    QTcpSocket *m_pClient;
+    bool m_bIsConnected;
 };
 
 #endif // CMAINWINDOW_H

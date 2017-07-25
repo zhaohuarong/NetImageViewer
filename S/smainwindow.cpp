@@ -1,4 +1,6 @@
-#include "server.h"
+#include <QTextEdit>
+#include <QTcpServer>
+#include <QTcpSocket>
 
 #include "smainwindow.h"
 #include "ui_smainwindow.h"
@@ -10,11 +12,22 @@ SMainWindow::SMainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_pServer = new Server(this);
-    m_pServer->listen("", 6666);
+    m_pServer = new QTcpServer(this);
+    connect(m_pServer, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
+    m_pServer->listen(QHostAddress::Any, 6666);
 }
 
 SMainWindow::~SMainWindow()
 {
     delete ui;
+}
+
+void SMainWindow::onNewConnection()
+{
+    QTcpSocket *pSocket = m_pServer->nextPendingConnection();
+    if(pSocket == NULL)
+        return;
+    QString strIp = pSocket->peerAddress().toString();
+    m_lstClient.insert(strIp, pSocket);
+    ui->textEdit->append(QString("%1 is connected").arg(strIp));
 }
