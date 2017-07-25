@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class Server;
+
 namespace Ui {
 class SMainWindow;
 }
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::SMainWindow *ui;
+    Server *m_pServer;
 };
 
 #endif // SMAINWINDOW_H

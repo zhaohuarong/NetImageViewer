@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class Client;
+
 namespace Ui {
 class CMainWindow;
 }
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::CMainWindow *ui;
+    Client *m_pClient;
 };
 
 #endif // CMAINWINDOW_H

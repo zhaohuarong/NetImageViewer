@@ -21,8 +21,10 @@ CONFIG(release, debug|release){
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
-        network.cpp
+    server.cpp \
+    client.cpp
 
 HEADERS += \
-        network.h \
-        network_global.h 
+        network_global.h \ 
+    server.h \
+    client.h
